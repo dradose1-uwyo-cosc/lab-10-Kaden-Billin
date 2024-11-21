@@ -13,6 +13,14 @@
 from hashlib import sha256 
 from pathlib import Path
 
+path = Path("rockyou.txt")
+contents = path.read_text()
+
+path2 = Path("hash")
+hash = path2.read_text()
+
+print(hash)
+
 def get_hash(to_hash):
     """You can use """
     return sha256(to_hash.encode('utf-8')).hexdigest().upper()
