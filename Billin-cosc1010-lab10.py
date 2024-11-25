@@ -1,8 +1,8 @@
-# Your Name Here
+# Kaden Billin
 # UWYO COSC 1010
-# Submission Date
-# Lab XX
-# Lab Section: 
+# 11-24-2024
+# Lab 10
+# Lab Section: 12
 # Sources, people worked with, help given to: 
 # your
 # comments
@@ -14,16 +14,36 @@ from hashlib import sha256
 from pathlib import Path
 
 path = Path("rockyou.txt")
-contents = path.read_text()
-
 path2 = Path("hash")
-hash = path2.read_text()
 
-print(hash)
 
 def get_hash(to_hash):
-    """You can use """
     return sha256(to_hash.encode('utf-8')).hexdigest().upper()
+
+try:
+    target = path2.read_text().strip()
+    
+except FileNotFoundError:
+    print("File not found")
+    exit()
+
+print(target)
+
+try:
+    passwords = path.read_text().splitlines()
+
+except FileNotFoundError:
+    print("File not found")
+    exit()
+
+else:
+    for password in passwords:
+        hashedpass = get_hash(password)
+        if hashedpass == target:
+            print(f"Password found: '{password}'")
+            break
+    else:
+        print("Password not found")
 
 
 
